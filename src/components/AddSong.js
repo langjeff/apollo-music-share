@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addSongButton: {
     margin: theme.spacing(1),
-  },  
+  },
   dialog: {
     textAlign: "center",
   },
