@@ -1,9 +1,9 @@
 import React from "react";
 import AddSong from "./components/AddSong";
 import Header from "./components/Header";
-import SongPlayer from "./components/Playlist";
+import SongPlayer from "./components/SongPlayer";
 import SongList from "./components/SongList";
-import Playlist from "./components/SongPlayer";
+import Playlist from "./components/Playlist";
 import { Grid } from "@material-ui/core";
 
 function App() {
@@ -15,9 +15,13 @@ function App() {
           <AddSong />
           <SongList />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid
+          style={{ position: "fixed", width: "100%", right: 0, top: 70 }}
+          item
+          xs={12}
+          md={5}
+        >
           <SongPlayer />
-          <Playlist />
         </Grid>
       </Grid>
     </>

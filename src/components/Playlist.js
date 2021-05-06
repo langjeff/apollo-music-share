@@ -1,7 +1,7 @@
 import React from "react";
 
-function SongPlayer() {
-  return <div>SongPlayer</div>;
+function Playlist() {
+  return <div>Playlist</div>;
 }
 
-export default SongPlayer;
+export default Playlist;
