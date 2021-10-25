@@ -1,8 +1,20 @@
-import { Typography, Avatar, IconButton, makeStyles } from "@material-ui/core";
+//imported modules
+import {
+  useMediaQuery,
+  Typography,
+  Avatar,
+  IconButton,
+  makeStyles,
+} from "@material-ui/core";
 import React from "react";
 import { Delete } from "@material-ui/icons";
 
+//custom Playlist component
 function Playlist() {
+  
+  //media query for applying conditional styles
+  const greaterThanMd = useMediaQuery((theme) => theme.breakpoints.up("md"));
+
   const song = {
     title: "song",
     artist: "artist",
@@ -11,14 +23,16 @@ function Playlist() {
   };
 
   return (
-    <div style={{ margin: "10px 0" }}>
-      <Typography color="textSecondary" variant="button">
-        QUEUE (5)
-      </Typography>
-      {Array.from({ length: 5 }, () => song).map((song, i) => (
-        <QueuedSong key={i} song={song} />
-      ))}
-    </div>
+    greaterThanMd && (
+      <div style={{ margin: "10px 0" }}>
+        <Typography color="textSecondary" variant="button">
+          QUEUE (5)
+        </Typography>
+        {Array.from({ length: 5 }, () => song).map((song, i) => (
+          <QueuedSong key={i} song={song} />
+        ))}
+      </div>
+    )
   );
 }
 
@@ -45,6 +59,7 @@ const useStyles = makeStyles({
   },
 });
 
+//custom QueuedSong component used in Playlist component.
 function QueuedSong({ song }) {
   const classes = useStyles();
   const { thumbnail, artist, title } = song;
@@ -71,3 +86,5 @@ function QueuedSong({ song }) {
 }
 
 export default Playlist;
+
+

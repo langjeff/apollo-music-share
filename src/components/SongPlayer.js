@@ -1,3 +1,4 @@
+// import modules
 import React from "react";
 import Playlist from "./Playlist";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { PlayArrow, SkipNext, SkipPrevious } from "@material-ui/icons";
 
+//custom styling for components
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//custom SongPlayer component
 function SongPlayer() {
   const classes = useStyles();
   return (

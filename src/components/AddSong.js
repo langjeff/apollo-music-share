@@ -1,3 +1,4 @@
+// imported modules
 import {
   Button,
   Dialog,
@@ -10,7 +11,10 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link, AddBoxOutlined } from "@material-ui/icons";
+import SoundcloudPlayer from "react-player/lib/players/SoundCloud";
+import YoutubePlayer from "react-player/lib/players/YouTube";
 
+// custom useStyles function using built-in makeStyles
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -30,16 +34,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// custom AddSong component
 function AddSong() {
   const classes = useStyles();
+  const [url, setUrl] = React.useState("");
+  // setDialog state for addSong button
   const [dialog, setDialog] = React.useState(false);
 
+  // handleCloseDialog function for cancel button on dialog element
   function handleCloseDialog() {
     setDialog(false);
   }
 
   return (
     <div className={classes.container}>
+      {/* dialog element for display when add song is clicked */}
       <Dialog
         className={classes.dialog}
         open={dialog}
@@ -62,7 +71,7 @@ function AddSong() {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="primary" onclick={handleCloseDialog}>
+          <Button color="primary" onclick={() => setDialog(false)}>
             Cancel
           </Button>
           <Button variant="outlined" color="secondary">
@@ -71,8 +80,11 @@ function AddSong() {
         </DialogActions>
       </Dialog>
 
+      {/* text field compenent       */}
       <TextField
         className={classes.urlInput}
+        onChange={(event) => setUrl(event.target.value)}
+        value={url}
         placeholder="Add Youtube or Soundcloud Url"
         fullWidth
         margin="normal"
@@ -85,6 +97,7 @@ function AddSong() {
           ),
         }}
       />
+      {/* addSong button */}
       <Button
         className={classes.addSongButton}
         onClick={() => setDialog(true)}

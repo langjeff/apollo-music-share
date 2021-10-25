@@ -1,4 +1,4 @@
-
+// import modules
 import {
   CardActions,
   CircularProgress,
@@ -11,17 +11,13 @@ import {
 } from "@material-ui/core";
 import { PlayArrowOutlined, Save } from "@material-ui/icons";
 import React from "react";
+import { GET_SONGS } from "../graphql/queries";
+import { useQuery } from "@apollo/react-hooks";
 
+// custom SongList component
 function SongList() {
-  let loading = false;
-
-  const song = {
-    title: "song",
-    artist: "artist",
-    thumbnail:
-      "https://images-na.ssl-images-amazon.com/images/I/413ukJfWdJL._AC_SX466_.jpg",
-  };
-
+  const { data, loading, error } = useQuery(GET_SONGS);
+  console.log(data);
   if (loading) {
     return (
       <div
@@ -37,10 +33,12 @@ function SongList() {
     );
   }
 
+  if (error) return <div>Error fetching songs</div>;
+
   return (
     <div>
-      {Array.from({ length: 10 }, () => song).map((song, i) => (
-        <Song key={i} song={song} />
+      {data.songs.map((song) => (
+        <Song key={song.id} song={song} />
       ))}
     </div>
   );
@@ -66,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// custom Song component for SongList
 function Song({ song }) {
   const { thumbnail, title, artist } = song;
   const classes = useStyles();
